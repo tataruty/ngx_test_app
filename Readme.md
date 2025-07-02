@@ -3,10 +3,13 @@
 
 build docker IMAGE for local usage
 `docker build . -t my_test_app:1.0.4`
+
 or for remote repo:
 `docker build . -t my_test_app:1.0.4 --platform linux/amd64,linux/arm64`
+
 add tag:
 `docker tag my_test_app:1.0.4 tusova194/my_test_app`
+
 and upload your image:
 `docker push tusova194/my_test_app` to see image go to your docker hub repo <https://hub.docker.com/repositories/tusova194> (my F5 acc)
 
@@ -17,7 +20,9 @@ with port exposed: `docker run -d -p 3002:3002 my_test_app:1.0.4`
 without and interactive mode: `docker run -it my_test_app:1.0.4`
 
 `kubectl get gateways` - gateways aren't available by get all
+
 `kubectl get all -o wide -n default`
+
 `helm list -A` -  list of installed by helm
 
 ## Prepare for app deployment
@@ -49,13 +54,21 @@ Install with helm and experimental:
 ## Deploying my test app
 
 `kubectl apply -f my_app.yaml`
+
 `kubectl apply -f gateway.yaml`
+
 `kubectl apply -f my-app-routes.yaml`
 
 to test:
 `curl --resolve my-app.my-app.com:8080:127.0.0.1 http://my-app.my-app.com:8080/test`
+
 But before make sure you are exposing ports:
+
 `kubectl port-forward $NGINX_POD 8080:80 &`
-where `NGINX_POD` is the name of the gateway pod e.g. `gateway-nginx-12345678-123456`
+
+where `NGINX_POD` is the name of the gateway pod e.g.
+`gateway-nginx-12345678-123456`
+
 `GW_IP=127.0.0.1`
+
 `GW_PORT=8080`
