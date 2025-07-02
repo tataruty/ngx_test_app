@@ -14,5 +14,5 @@ spec:
         type: PathPrefix
         value: /test
     backendRefs:
-    - name: my-test-app
+    - name: my-app-service
       port: 80
