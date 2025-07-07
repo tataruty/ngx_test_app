@@ -55,6 +55,8 @@ Install with helm and experimental:
 
 `kubectl apply -f my_app.yaml`
 
+Before next make sure you've run `make GOARCH=$GOARCH TAG=$(whoami) build-images` without `TAG` to get default `tag=edge`, and then `make load-images` to upload images
+
 `kubectl apply -f gateway.yaml`
 
 `kubectl apply -f my-app-routes.yaml`
@@ -66,9 +68,11 @@ But before make sure you are exposing ports:
 
 `kubectl port-forward $NGINX_POD 8080:80 &`
 
-where `NGINX_POD` is the name of the gateway pod e.g.
-`gateway-nginx-12345678-123456`
+where `NGINX_POD` is the name of the gateway pod e.g. `gateway-nginx-12345678-123456`
 
-`GW_IP=127.0.0.1`
+## Useful things
 
-`GW_PORT=8080`
+To find what uses port and kill it:
+to find: `jobs`
+
+to kill: `kill %1` (1 - will be id of the job, f.i. `[1]`)
